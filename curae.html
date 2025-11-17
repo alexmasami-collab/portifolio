@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curae S&P - Saúde & Proteção</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0066CC',
+                        'secondary': '#003366',
+                        'accent': '#00A0E9',
+                        'light-blue': '#E6F2FF',
+                        'dark-blue': '#001A33'
+                    },
+                    fontFamily: {
+                        'sans': ['"Open Sans"', 'sans-serif'],
+                        'heading': ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.9), rgba(0, 160, 233, 0.8));
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #00A0E9;
+            box-shadow: 0 10px 25px -5px rgba(0, 160, 233, 0.3);
+        }
+        
+        .plan-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 102, 204, 0.2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066CC, #00A0E9);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 1;
+        }
+        
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+        
+        /* Estilo base do botão */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px;
+            font-size: 22px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            width: 60px;
+        }
+
+        /* Container de textos */
+        .whatsapp-labels {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+
+        /* Texto principal */
+        .whatsapp-text {
+            white-space: nowrap;
+            opacity: 0;
+            width: 0;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* Texto abaixo */
+        .whatsapp-subtext {
+            white-space: nowrap;
+            opacity: 0;
+            width: 0;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            color: #d4f7dc;
+            font-weight: 500;
+        }
+
+        /* Efeito ao passar o mouse */
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            width: 200px;
+        }
+
+        /* Exibir textos ao hover */
+        .whatsapp-float:hover .whatsapp-text,
+        .whatsapp-float:hover .whatsapp-subtext {
+            opacity: 1;
+            width: auto;
+        }
+        
+        .active-nav {
+            color: #0066CC;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .active-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0066CC;
+        }
+        
+        .partner-logo {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: #0066CC !important;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        .blue-heart {
+            color: #0066CC;
+            font-size: 32px;
+        }
+        
+        .gray-rod {
+            position: absolute;
+            height: 32px;
+            width: 4px;
+            background-color: #888;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+        
+        .gray-rod::after {
+            content: '';
+            position: absolute;
+            height: 32px;
+            width: 4px;
+            background-color: #888;
+            transform: rotate(90deg);
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo-icon {
+                margin-bottom: 5px;
+            }
+        }
+           .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    </style>
+</head>
+<body class="bg-light-blue">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511945937569?text=Olá%2C%20gostaria%20de%20adquirir%20planos" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        <div class="whatsapp-labels">
+            <span class="whatsapp-text">Consultor</span>
+            <span class="whatsapp-subtext">Online</span>
+        </div>
+    </a>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo + Nome -->
+            <div class="flex items-center"> 
+                    <div class="logo-icon"> <i class="fas fa-heart blue-heart"></i> 
+            </div> <span class="text-xl font-bold font-heading text-primary">Curae 
+                <span class="text-orange-400">S &amp; P</span> </span> 
+            </div>
+                
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-secondary hover:text-primary transition active-nav">Início</a>
+                    <a href="#planos" class="text-secondary hover:text-primary transition">Planos</a>
+                    <a href="#beneficios" class="text-secondary hover:text-primary transition">Benefícios</a>
+                    <a href="#sobre" class="text-secondary hover:text-primary transition">Sobre Nós</a>
+                    <a href="#contato" class="text-secondary hover:text-primary transition">Contato</a>
+                    <a href="#contratar" class="px-4 py-2 bg-accent text-white rounded-full hover:bg-primary transition shadow-md">Contratar</a>
+                </nav>
+
+                <!-- Botão Mobile -->
+                <button id="mobile-menu-button" class="md:hidden text-secondary focus:outline-none" aria-label="Abrir menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <div class="flex flex-col space-y-3">
+                <a href="#inicio" class="text-secondary hover:text-primary transition py-2">Início</a>
+                <a href="#planos" class="text-secondary hover:text-primary transition py-2">Planos</a>
+                <a href="#beneficios" class="text-secondary hover:text-primary transition py-2">Benefícios</a>
+                <a href="#sobre" class="text-secondary hover:text-primary transition py-2">Sobre Nós</a>
+                <a href="#contato" class="text-secondary hover:text-primary transition py-2">Contato</a>
+                <a href="#contratar" class="px-4 py-2 bg-accent text-white rounded-full hover:bg-primary transition mt-2 text-center">Contratar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient text-white pt-32 pb-56 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-heading leading-tight">
+                        Curae <span class="text-orange-400">Saúde & Proteção</span>
+                    </h1>
+                    <p class="text-xl mb-8">Curae – Saúde e Proteção em todas as etapas da vida. Mais que corretores, um compromisso com você. Curae: confiança, cuidado e proximidade.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#planos" class="bg-white text-primary px-8 py-4 rounded-full font-semibold text-center transition hover:bg-opacity-90 shadow-lg">Conheça nossos planos</a>
+                        <a href="https://wa.me/5511945937569?text=Olá%2C%20gostaria%20de%20conhecer%20planos" class="bg-accent border-2 border-accent text-white px-8 py-4 rounded-full font-semibold text-center transition hover:bg-primary shadow-lg">Contratar agora</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <img src="http://static.photos/medical/640x360/42" alt="Corretores de plano de saúde" class="rounded-xl shadow-2xl w-full max-w-lg mx-auto floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white -mt-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-light-blue p-8 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-primary mb-2 font-heading">+500</div>
+                    <div class="text-secondary">Hospitais credenciados</div>
+                </div>
+                <div class="bg-light-blue p-8 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-primary mb-2 font-heading">+2K</div>
+                    <div class="text-secondary">Clientes satisfeitos</div>
+                </div>
+                <div class="bg-light-blue p-8 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-primary mb-2 font-heading">24/7</div>
+                    <div class="text-secondary">Atendimento Humanizado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="beneficios" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4 font-heading">Nossos Benefícios Exclusivos</h2>
+                <div class="w-20 h-1 bg-accent rounded-full mx-auto"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">Tudo que você precisa para cuidar da sua saúde e bem-estar</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="feature-icon rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-hospital text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 font-heading text-center">Rede Credenciada</h3>
+                    <p class="text-gray-600 mb-4 text-center">Acesso aos melhores hospitais, clínicas e laboratórios do país, com ampla cobertura nacional.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Hospitais de referência</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Laboratórios parceiros</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Clínicas especializadas</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="feature-icon rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-md text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 font-heading text-center">Atendimento Personalizado</h3>
+                    <p class="text-gray-600 mb-4 text-center">Consultas com especialistas, exames e procedimentos com agilidade e qualidade.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Mais de 30 especialidades</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Agendamento rápido</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Telemedicina 24h</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="feature-icon rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 font-heading text-center">Prevenção e Bem-Estar</h3>
+                    <p class="text-gray-600 mb-4 text-center">Programas de saúde preventiva e qualidade de vida para você e sua família.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Check-ups anuais</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Vacinas e imunizações</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Programa de gestantes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="planos" class="py-20 bg-light-blue">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4 font-heading">Nossos Planos de Saúde</h2>
+                <div class="w-20 h-1 bg-accent rounded-full mx-auto"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">Escolha o plano que melhor atende às necessidades da sua família</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="plan-card bg-white p-8 rounded-lg shadow-sm border-t-4 border-accent">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-secondary mb-2 font-heading">Básico</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">A partir de R$99<span class="text-lg font-normal">/mês</span></div>
+                        <div class="text-gray-500">Individual</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Consultas básicas</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Exames laboratoriais</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Urgência e emergência</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Rede nacional</li>
+                        <li class="flex items-center text-gray-400"><i class="fas fa-times mr-2"></i> <del>Internações</del></li>
+                        <li class="flex items-center text-gray-400"><i class="fas fa-times mr-2"></i> <del>Especialidades</del></li>
+                    </ul>
+                    <a href="#contratar" class="block w-full bg-accent text-white text-center py-3 rounded-full font-semibold hover:bg-primary transition">Contratar</a>
+                </div>
+                
+                <!-- Family Plan (Featured) -->
+                <div class="plan-card bg-white p-8 rounded-lg shadow-lg border-t-4 border-primary transform scale-105 relative">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-semibold">Mais Popular</div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-secondary mb-2 font-heading">Familiar</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">A Partir R$ 299<span class="text-lg font-normal">/mês</span></div>
+                        <div class="text-gray-500">Até 4 pessoas</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Todas consultas</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Exames e procedimentos</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Urgência e emergência</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Rede premium</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Internações</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> +20 especialidades</li>
+                    </ul>
+                    <a href="#contratar" class="block w-full bg-primary text-white text-center py-3 rounded-full font-semibold hover:bg-secondary transition">Contratar</a>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="plan-card bg-white p-8 rounded-lg shadow-sm border-t-4 border-accent">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-secondary mb-2 font-heading">Premium</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">A partir de R$699<span class="text-lg font-normal">/mês</span></div>
+                        <div class="text-gray-500">Familiar + extras</div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Todas consultas</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Rede premium nacional</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Assistência 24h</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> +50 especialidades</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Internações</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Check-ups anuais</li>
+                    </ul>
+                    <a href="#contratar" class="block w-full bg-accent text-white text-center py-3 rounded-full font-semibold hover:bg-primary transition">Contratar</a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Precisa de um plano personalizado? Fale com nossos especialistas.</p>
+                <a href="https://wa.me/5511945937569?text=Olá%2C%20gostaria%20de%20adquirir%20planos" class="inline-flex items-center px-8 py-3 bg-white text-primary border border-primary rounded-full font-semibold hover:bg-primary hover:text-white transition shadow-md">
+                    Falar com consultor
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <img src="http://static.photos/medical/640x360/15" alt="Equipe de corretores" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 font-heading">Sobre a Curae S&P</h2>
+                    <div class="w-20 h-1 bg-accent rounded-full mb-6"></div>
+                    <p class="text-gray-600 mb-6">Somos uma empresa especializada em planos de saúde, com mais de 15 anos de experiência no mercado, oferecendo soluções personalizadas para indivíduos, famílias e empresas.</p>
+                    <p class="text-gray-600 mb-8">Nossa missão é proporcionar acesso à saúde de qualidade de forma simples, transparente e acessível, com atendimento humanizado e foco no bem-estar dos nossos clientes.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-light-blue p-3 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Segurança</h4>
+                                <p class="text-gray-600 text-sm">Planos com ampla cobertura e estabilidade</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-light-blue p-3 rounded-full mr-4">
+                                <i class="fas fa-hand-holding-heart text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-secondary mb-1">Atendimento</h4>
+                                <p class="text-gray-600 text-sm">Humanizado e personalizado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-light-blue">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4 font-heading">O que dizem nossos clientes</h2>
+                <div class="w-20 h-1 bg-accent rounded-full mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/120x120/1" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-secondary">Daniel Lourenco</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Contratei o plano familiar e foi a melhor decisão. Atendimento rápido em hospitais de qualidade e sem burocracia."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/120x120/2" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-secondary">Bruna Motta</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"A Curae S & P, melhor equipe atendimento foi impecável e a equipe muito atenciosa."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/120x120/3" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-secondary">Alex Kartnaller</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Depois de anos com plano empresarial, migrei para o individual da Curae S & P e economizei muito sem perder qualidade."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contratar" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">Pronto para proteger sua saúde?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Escolha um de nossos planos ou fale com um especialista para encontrar a melhor opção para você.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#planos" class="bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition shadow-lg">Ver Planos</a>
+                <a href="https://wa.me/5511945937569?text=Olá%2C%20gostaria%20de%20adquirir%20planos" class="bg-accent border-2 border-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary transition shadow-lg">Falar com Especialista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Carousel -->
+    <section class="py-12 bg-light-blue">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-secondary mb-2 font-heading">Nossos Parceiros</h3>
+                <div class="w-16 h-1 bg-accent rounded-full mx-auto"></div>
+            </div>
+            
+            <div class="swiper partners-swiper">
+                <div class="swiper-wrapper py-6">
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Bradesco_Sa%C3%BAde_logo.png" alt="Bradesco Seguros" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/SulAm%C3%A9rica_logo.png" alt="SulAmérica Saúde" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Amil_logo_2023.png" alt="Amil" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/NotreDame_Interm%C3%A9dica_logo.png" alt="NotreDame Intermédica" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Hapvida_logo.png" alt="Hapvida" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Prevent_Senior_logo.png" alt="Prevent Senior" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://assets-global.website-files.com/602d6d87035a37479e6a0eef/60a3d0a17d27a18f4badb6d4_logo-alice-saude.svg" alt="Alice Saúde" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Unimed_logo.svg" alt="Unimed" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Porto_Seguro_logo.svg" alt="Porto Seguro Saúde" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Care_Plus_logo.png" alt="Care Plus" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Sami_Sa%C3%BAde_logo.png" alt="Sami Saúde" class="h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="partner-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/S%C3%A3o_Crist%C3%B3v%C3%A3o_Sa%C3%BAde_logo.svg" alt="São Cristóvão Saúde" class="h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Contact Section -->
+<section id="contato" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row">
+      
+      <!-- Coluna Esquerda: Contato -->
+      <div class="md:w-1/2 mb-12 md:mb-0">
+        <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6 font-heading">Entre em Contato</h2>
+        <div class="w-20 h-1 bg-accent rounded-full mb-6"></div>
+        
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="bg-light-blue p-3 rounded-full mr-4">
+              <i class="fas fa-map-marker-alt text-primary"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-secondary mb-1">Endereço</h4>
+              <p class="text-gray-600">Santana - São Paulo/SP</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="bg-light-blue p-3 rounded-full mr-4">
+              <i class="fas fa-phone-alt text-primary"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-secondary mb-1">Telefone</h4>
+              <p class="text-gray-600">(11) 94593-7569 / (11) 97274-5351</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="bg-light-blue p-3 rounded-full mr-4">
+              <i class="fas fa-envelope text-primary"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-secondary mb-1">E-mail</h4>
+              <p class="text-gray-600">curaesauprot@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="bg-light-blue p-3 rounded-full mr-4">
+              <i class="fas fa-clock text-primary"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-secondary mb-1">Horário de Atendimento</h4>
+              <p class="text-gray-600">Segunda a Sexta: 8h às 18h</p>
+              <p class="text-gray-600">Sábado: 9h às 16h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna Direita: Formulário -->
+      <div class="md:w-1/2 md:pl-12">
+
+        <form id="my-form" action="https://formspree.io/f/mdkykolp" method="POST" class="bg-light-blue p-8 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-secondary mb-6 font-heading">Envie sua mensagem</h3>
+
+          <div class="mb-4">
+            <input id="nome" type="text" name="nome" required class="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+
+          <div class="mb-4">
+            <label for="telefone" class="block text-secondary mb-2">Telefone</label>
+            <input id="telefone" type="tel" name="telefone" required class="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+
+          <div class="mb-4">
+            <label for="email" class="block text-secondary mb-2">E-mail</label>
+            <input id="email" type="email" name="email" required class="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+
+          <div class="mb-6">
+            <label for="mensagem" class="block text-secondary mb-2">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="4" required class="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          </div>
+ 
+       
+          <!-- Checkbox LGPD -->
+          <div class="flex items-start justify-center text-center gap-3 text-gray-700 text-sm mb-6">
+            <input type="checkbox" id="lgpd" required class="mt-1 accent-primary scale-110 cursor-pointer">
+            <label for="lgpd" class="max-w-md leading-relaxed">
+              Declaro que li e aceito a 
+              <a href="#" class="text-primary hover:underline" onclick="openPolicyModal(event)">
+                Política de Privacidade
+              </a> 
+              e autorizo o uso dos meus dados conforme a LGPD.
+            </label>
+          </div>
+          <!-- Botão de Envio -->
+          <button id="my-form-button" type="submit" class="w-full bg-primary text-white py-3 rounded-full font-semibold hover:bg-secondary transition">
+            Enviar Mensagem
+          </button>
+
+          <!-- Mensagem de status -->
+          <p id="my-form-status" class="text-center text-secondary font-medium mt-4"></p>
+         </form>
+        </div>
+    </div>
+  </div>
+
+  <!-- Modal de Política de Privacidade -->
+  <div id="policyModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-8 relative fade-in">
+      <button onclick="closePolicyModal()" class="absolute top-3 right-3 text-gray-500 hover:text-primary">
+        ✕
+      </button>
+      <h2 class="text-xl font-bold mb-4 text-secondary">Política de Privacidade</h2>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        Seus dados são utilizados apenas para fins de contato e não são compartilhados com terceiros.
+        O envio deste formulário implica no aceite dos termos da LGPD e da nossa Política de Privacidade.
+      </p>
+      <div class="text-center mt-6">
+        <button onclick="closePolicyModal()" class="px-6 py-2 bg-primary text-white rounded-full hover:opacity-90">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="logo-icon">
+                            <i class="fas fa-heart blue-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading">Curae S & P</h3>
+                    </div>
+                    <p class="mb-4 max-w-xs">Sua saúde protegida com os melhores planos e atendimento diferenciado.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/curae.saude/" class="hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5511945937569?text=Olá%2C%20gostaria%20de%20adquirir%20planos" class="hover:text-accent transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61583840490025" class="hover:text-accent transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-accent transition"><i class="fab fa-linkedin-in"></i></a>
+                        
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold mb-4">Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#inicio" class="hover:text-accent transition">Início</a></li>
+                            <li><a href="#planos" class="hover:text-accent transition">Planos</a></li>
+                            <li><a href="#beneficios" class="hover:text-accent transition">Benefícios</a></li>
+                            <li><a href="#sobre" class="hover:text-accent transition">Sobre Nós</a></li>
+                            <li><a href="#contato" class="hover:text-accent transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-4">Planos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-accent transition">Individual</a></li>
+                            <li><a href="#" class="hover:text-accent transition">Familiar</a></li>
+                            <li><a href="#" class="hover:text-accent transition">Premium</a></li>
+                            <li><a href="#" class="hover:text-accent transition">Empresarial</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-accent transition">Termos de Uso</a></li>
+                            <li><a href="#" class="hover:text-accent transition">Política de Privacidade</a></li>
+                            <li><a href="#" class="hover:text-accent transition">Regulamento</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p>&copy; 2025 Curae S & P. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if(!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // Highlight active nav item
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('nav a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if(pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active-nav');
+                    if(item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active-nav');
+                    }
+                });
+            });
+            
+            // Initialize feather icons
+            if(typeof feather !== 'undefined') {
+                feather.replace();
+            }
+            
+            // Initialize Swiper
+            const swiper = new Swiper('.partners-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                    },
+                }
+            });
+        });
+    </script>
+
+<script>
+  // Função para abrir o modal da política
+  function openPolicyModal(event) {
+    event.preventDefault();
+    document.getElementById("policyModal").classList.remove("hidden");
+  }
+
+  // Função para fechar o modal da política
+  function closePolicyModal() {
+    document.getElementById("policyModal").classList.add("hidden");
+  }
+
+  // Lógica de envio do formulário com feedback
+  const form = document.getElementById("my-form");
+  const status = document.getElementById("my-form-status");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        status.innerHTML = "<span class='text-green-600'>Mensagem enviada com sucesso!</span>";
+        form.reset();
+      } else {
+        status.innerHTML = "<span class='text-red-600'>Erro ao enviar. Tente novamente.</span>";
+      }
+    } catch (error) {
+      status.innerHTML = "<span class='text-red-600'>Erro de conexão. Verifique sua internet.</span>";
+    }
+  });
+</script>
+
+<script>
+  // Abre modal da política
+  function openPolicyModal(e) {
+    e.preventDefault();
+    document.getElementById("policyModal").classList.remove("hidden");
+  }
+
+  // Fecha modal da política
+  function closePolicyModal() {
+    document.getElementById("policyModal").classList.add("hidden");
+  }
+
+  // Bloqueia envio se checkbox não estiver marcado
+  document.getElementById("my-form").addEventListener("submit", function (e) {
+    const checkbox = document.getElementById("lgpd");
+    if (!checkbox.checked) {
+      e.preventDefault();
+      alert("Por favor, aceite a Política de Privacidade antes de enviar.");
+    }
+  });
+</script>
+
+
+  
+</body>
+</html>
